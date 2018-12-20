@@ -266,7 +266,7 @@ end
 
 And let's change our run file to just call the run method. Nice use of OOP!
 
-_What other opportunities for abstraction can you find in this `run` method?_ Take some time to think about it before moving forward as it will lead to cleaner code later on.
+_**What other opportunities for abstraction can you find in this `run` method?**_ Take some time to think about it before moving forward as it will lead to cleaner code later on.
 
 ![thumbs_up](https://media.giphy.com/media/111ebonMs90YLu/giphy.gif)
 
