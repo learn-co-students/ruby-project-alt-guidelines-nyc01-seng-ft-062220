@@ -31,24 +31,7 @@ Your **minimum requirements** for this project are to build a Command Line App t
 
 This should take approximately **half a day**.
 
-#### Setup
-
-Fork and clone this project repository. As you work, be sure to create a flow of:
-
-* creating a branch to work on a new feature,
-* committing and pushing to your branch,
-* and merging it to `master` when finished.
-* Rinse and repeat.
-
-Before you start building, take a look at the files you have available in this repo.
-
-* In the main directory, you've got a `Gemfile` that gives you access to `activerecord`, `pry`, `rake`, and `sqlite3`.
-  * Remember to `bundle install`!
-* In the `bin` directory, you've got a `run.rb` file that you can run from the command line with `ruby bin/run.rb.`
-* In `config`, you've got your database set up with Active Record, as well as all of your models from the `lib` folder made available to your database.
-* In the `lib` directory, you'll be building all your models.
-
-**Note:** There is no `spec` directory. Your goal is to use [Behavior Driven Development (BDD)](https://en.wikipedia.org/wiki/Behavior-driven_development) to confirm that your code is doing what it should. This means instead of running `rspec` or `learn`, you should frequently be opening up the `rake console` and confirming that your methods and associations work.
+Do not begin coding until you have your pitch approved by an instructor. Do not overthink this. Do not spend your whole day whiteboarding out a schema.
 
 #### Planning
 
@@ -75,6 +58,7 @@ For example, if we were creating an app to review restaurants on Yelp, we might 
 * As a user, I should be able to edit my restaurant review. (**Update**)
 * As a user, I want to be able to delete one of my restaurant reviews. (**Delete**)
 
+
 #### The Pitch
 
 Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above. When you are ready to pitch, be sure to bring the following with you when you sit down with your instructor(s):
@@ -89,6 +73,26 @@ As you pitch, think about how you would explain your [Minimum Viable Product (MV
 _**You do not need to have your MVP figured out before your pitch.**_ We will help you scope your project idea before approving it. However, this is a very useful skill to begin building for the future.
 
 **Get your data modeling approved by an instructor before moving on to the next step.**
+
+#### Setup
+
+Fork and clone this project repository. As you work, be sure to create a flow of:
+
+* creating a branch to work on a new feature,
+* committing and pushing to your branch,
+* and merging it to `master` when finished.
+* Then delete your old branch after successfully merging to `master`.
+* Rinse and repeat.
+
+Before you start building, take a look at the files you have available in this repo.
+
+* In the main directory, you've got a `Gemfile` that gives you access to `activerecord`, `pry`, `rake`, and `sqlite3`.
+  * Remember to `bundle install`!
+* In the `bin` directory, you've got a `run.rb` file that you can run from the command line with `ruby bin/run.rb.`
+* In `config`, you've got your database set up with Active Record, as well as all of your models from the `lib` folder made available to your database.
+* In the `lib` directory, you'll be building all your models.
+
+**Note:** There is no `spec` directory. Your goal is to use [Behavior Driven Development (BDD)](https://en.wikipedia.org/wiki/Behavior-driven_development) to confirm that your code is doing what it should. This means instead of running `rspec` or `learn`, you should frequently be opening up the `rake console` and confirming that your methods and associations work.
 
 ---
 
