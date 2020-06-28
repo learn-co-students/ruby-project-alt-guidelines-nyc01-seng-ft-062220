@@ -37,9 +37,9 @@ Do not begin coding until you have your pitch approved by an instructor. Do not 
 
 Your **first goal** should be to decide on your models and determine the relationships between them. You **must have a minimum of three models consisting of at least _one_ many-to-many relationship.** Here are some ideas:
 
-* `Restaurant`, `User`, `Review`: (Yelp domain) A restaurant has many users and an user has many restaurants; reviews belongs to restaurant and to user.
+* `Restaurant`, `User`, `Review`: (Yelp domain) A restaurant has many users and a user has many restaurants; reviews belongs to restaurant and to user.
 * `Movie`, `Actor`, `Role`: (IMDb domain) A movie has many actors and an actor has many movies; roles belongs to movie and to actor.
-* `Pizza`, `Topping`, `PizzaTopping`: (Domino's domain) A pizza has many toppings and an topping has many pizzas; pizza_toppings belongs to pizza and to topping.
+* `Pizza`, `Topping`, `PizzaTopping`: (Domino's domain) A pizza has many toppings and a topping has many pizzas; pizza_toppings belongs to pizza and to topping.
 
 Whiteboard out your ideas and think about what columns you'll want in the corresponding tables, including foreign keys.
 
@@ -154,7 +154,7 @@ Restaurant.create(name: Faker::Company.name)
 Review.create(user_id: User.all.sample.id, restaurant_id: Restaurant.all.sample.id, content: Faker::Hacker.say_something_smart)
 ```
 
-This is great for randomly data and randomly associating it once, but that's still very limiting and manual. Now think about how you might automate creating _lots_ of objects using `faker` in your seed file _and_ set up the relationships between them. 🤔
+This is great for randomly creating data and randomly associating it once, but that's still very limiting and manual. Now think about how you might automate creating _lots_ of objects using `faker` in your seed file _and_ set up the relationships between them. 🤔
 
 **Your goal** is to make sure you have enough data to play around with once you get your command line interface up and running. Five to ten instances of each model, as well as the corresponding relationships should be enough. You can always add more later.
 
@@ -283,9 +283,9 @@ Review.all.select do |review|
 end
 ```
 
-But wait, didn't we define our relationships already when we setup our models? Why did we even do that? 🤔
+But wait, didn't we define our relationships already when we set up our models? Why did we even do that? 🤔
 
-OH SNAP! It's because ActiveRecord writes that method for us already so long as we setup our schema and relationships correctly! We can just do this instead:
+OH SNAP! It's because ActiveRecord writes that method for us already so long as we set up our schema and relationships correctly! We can just do this instead:
 
 ```ruby
 restaurant.reviews
@@ -295,7 +295,7 @@ restaurant.reviews
 
 Now that we have the reviews, let's tackle the second step of printing out the content and usernames for the reviews. Before diving right into the code, let's think ahead a bit and put into practice those OOP principles and recall _Single Responsibility Principle_.
 
-We can avoid our refactor step by realizing that we can create a reusable method that prints out reviews. This method will iterate over a given array of reviews and outputs the content and username to the console. OOP!
+We can avoid our refactor step by realizing that we can create a reusable method that prints out reviews. This method will iterate over a given array of reviews and output the content and username to the console. OOP!
 
 ```ruby
 def show_reviews(reviews)
