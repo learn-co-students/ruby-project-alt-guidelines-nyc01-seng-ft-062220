@@ -13,7 +13,7 @@ def welcome_message
   if input == 1
     Restaurant.make_selection
   elsif input == 2
-    Guest.make_selection
+    Guest.who_are_you?
   else
     puts "Invalid selection, please try again."
     welcome_message

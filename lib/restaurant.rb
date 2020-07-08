@@ -1,16 +1,16 @@
 require 'pry'
 
+
 class Restaurant < ActiveRecord::Base
   has_many :reservations
   has_many :guests, through: :reservations
 
   def self.make_selection
-    system "cls"
+    print "\e[2J\e[f"
     restaurant = Restaurant.all.select {|rest| rest.name == 'ilili'}
     restaurant.each do |item|
       @restaurant_id = item.id
     end
-
     puts "Flatiron Restaurant Reservation System"
     puts
     puts "What would you like to do?"
@@ -57,14 +57,13 @@ class Restaurant < ActiveRecord::Base
     Reservation.create(date: date, time: time, party_size: party_size, reservation_notes: reservation_notes, guest_id: guest.id, restaurant_id: @restaurant_id )
 
     puts "Reservation has been booked!"
-    puts
-    puts "Press enter to continue..."
-    gets.chomp
-    make_selection
+    check_reservations
     end
 
 
   def self.check_reservations
+    puts
+    puts
     test = Reservation.all.select {|reso| reso.restaurant_id == @restaurant_id}
 
     final_array = []
@@ -151,7 +150,10 @@ class Restaurant < ActiveRecord::Base
     puts "2. Time"
     puts "3. Party Size"
     puts "4. Reservation Notes"
+    puts "5. Cancel Reservation"
+    puts "6. Return to main menu"
     puts
+    puts "Please make a selection: "
     input = gets.chomp.to_i
     if input == 1
       puts "Please input new date"
@@ -159,6 +161,7 @@ class Restaurant < ActiveRecord::Base
       reservation.date = new_date
       reservation.save
       puts 'Date Updated'
+      check_reservations
 
     elsif input == 2
       puts "Please input new time"
@@ -166,6 +169,7 @@ class Restaurant < ActiveRecord::Base
       reservation.time = new_time
       reservation.save
       puts 'Time Updated'
+      check_reservations
 
     elsif input == 3
       puts "Please input new Party Size"
@@ -173,6 +177,7 @@ class Restaurant < ActiveRecord::Base
       reservation.party_size = new_party
       reservation.save
       puts 'Party Size Updated'
+      check_reservations
 
     elsif input == 4
       puts "Please input new Reservation Notes"
@@ -180,9 +185,27 @@ class Restaurant < ActiveRecord::Base
       reservation.reservation_notes = new_notes
       reservation.save
       puts 'Notes Updated'
+      check_reservations
 
+    elsif input == 5
+      puts "Cancel this reservation? y/n"
+      input = gets.chomp
+      if input == 'y'
+        reservation.destroy
+        puts "Reservation has been cancelled"
+        check_reservations
+      elsif  input == 'n'
+        puts "Reservation has NOT been cancelled."
+        check_reservations
+      else
+        puts "Invalid selection. Press enter to try again"
+        modify_reservation(id)
+      end
+    elsif input == 6
+      make_selection
     else
       puts "Invalid selection. Please Try again."
+      modify_reservation(id)
     end
   end
 
