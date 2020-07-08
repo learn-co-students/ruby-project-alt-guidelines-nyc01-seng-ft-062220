@@ -17,7 +17,7 @@ class Restaurant < ActiveRecord::Base
     puts
     puts "1. Make a reservation"
     puts "2. Check Reservations"
-    puts "3. Look up Guest History"
+    puts "3. Modify a reservation"
     puts
     puts "Please make your selection:"
     input = gets.chomp.to_i
@@ -27,7 +27,7 @@ class Restaurant < ActiveRecord::Base
     elsif input == 2
       check_reservations
     elsif input == 3
-      make_reservation
+      find_reservation
     else
       "Invalid selection.  Please try again"
       make_selection
@@ -81,10 +81,10 @@ class Restaurant < ActiveRecord::Base
       phone_number = guest.phone_number
       guest_notes = guest.guest_notes
 
-      final_array.push("#{date} \t #{time} \t #{party_size} \t \t #{first_name} #{last_name} \t \t #{phone_number} \t \t #{guest_notes} \t \t \t \t #{reso_notes}")
+      final_array.push("#{date} \t\t #{time} \t\t #{party_size} \t \t #{first_name} #{last_name} \t \t \t \t #{phone_number} \t \t #{guest_notes} \t \t \t \t #{reso_notes}")
 
     end
-    puts ("Date \t \tTime \t Size \t Guest Name       \t Phone Number \t \t Guest Notes        \t \t Reservation Notes       ")
+    puts ("Date \t \t \tTime \t \t Size \t Guest Name \t \t \t \t Phone Number \t \t Guest Notes \t \t \t \t \t \t Reservation Notes       ")
     final_array.each do |item|
       puts item
     end
@@ -94,5 +94,98 @@ class Restaurant < ActiveRecord::Base
     make_selection
   end
 
+  def self.find_reservation
+    id = 0
+
+    puts "Please enter the phone number of the Guest:"
+    guest_phone = gets.chomp
+
+    guest = Guest.find_by(phone_number: guest_phone)
+
+    if guest
+      puts "Guest Found!"
+      puts
+      puts "#{guest.first_name} #{guest.last_name} - #{guest.phone_number} - #{guest.guest_notes}"
+      puts
+      puts "Pending Reservations:"
+      puts
+      reservations = Reservation.all.select {|reso| reso.guest_id == guest.id}
+      reservations.each do |item|
+        id = item.id
+        date = item.date
+        time = item.time
+        party_size = item.party_size
+        notes = item.reservation_notes
+        puts "ID: #{id} - #{date} #{time} #{party_size} #{notes}"
+      end
+      puts
+      puts "Would you like to modify this reservation? y/n"
+      input = gets.chomp
+      if input == 'y'
+        modify_reservation(id)
+      elsif input == 'n'
+        make_selection
+      else
+        puts "Invalid selection.  Please try again."
+        gets.chomp
+        find_reservation
+      end
+    else
+    puts "Guest could not be located. Try again? y/n"
+    input = gets.chomp
+    if input == 'y'
+      find_reservation
+    else
+      make_selection
+    end
+    end
+  end
+
+
+  def self.modify_reservation(id)
+    reservation = Reservation.find_by(id: id)
+
+    puts "What would you like to modify?"
+    puts
+    puts "1. Date"
+    puts "2. Time"
+    puts "3. Party Size"
+    puts "4. Reservation Notes"
+    puts
+    input = gets.chomp.to_i
+    if input == 1
+      puts "Please input new date"
+      new_date = gets.chomp
+      reservation.date = new_date
+      reservation.save
+      puts 'Date Updated'
+
+    elsif input == 2
+      puts "Please input new time"
+      new_time = gets.chomp
+      reservation.time = new_time
+      reservation.save
+      puts 'Time Updated'
+
+    elsif input == 3
+      puts "Please input new Party Size"
+      new_party = gets.chomp
+      reservation.party_size = new_party
+      reservation.save
+      puts 'Party Size Updated'
+
+    elsif input == 4
+      puts "Please input new Reservation Notes"
+      new_notes = gets.chomp
+      reservation.reservation_notes = new_notes
+      reservation.save
+      puts 'Notes Updated'
+
+    else
+      puts "Invalid selection. Please Try again."
+    end
+  end
+
 
 end
+
