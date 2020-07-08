@@ -1,6 +1,7 @@
 require_relative '../config/environment'
 
 def welcome_message
+  system("clear")
   puts "FLATIRON RESTAURANT RESERVATION SYSTEM"
   puts
   puts "Please make your selection:"
@@ -12,7 +13,7 @@ def welcome_message
   puts "Please make your selection: "
   input = gets.chomp.to_i
   if input == 1
-    Restaurant.make_selection
+    Restaurant.who_are_you?
   elsif input == 2
     Guest.who_are_you?
   else
