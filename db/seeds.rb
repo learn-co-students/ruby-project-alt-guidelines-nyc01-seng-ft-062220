@@ -16,3 +16,4 @@ reso1 = Reservation.create(date: '8/12/2020', time:"6PM", party_size: 4, reserva
 reso2 = Reservation.create(date: '8/13/2020', time:"7PM", party_size: 2, reservation_notes: 'Birthday Dinner', guest: g1, restaurant: rest2)
 reso3 = Reservation.create(date: '8/14/2020', time:"7PM", party_size: 2, reservation_notes: 'Anniversary Dinner', guest: g1, restaurant: rest3)
 reso4 = Reservation.create(date: '8/15/2020', time:"5PM", party_size: 6, reservation_notes: 'Anniversary Dinner', guest: g2, restaurant: rest1)
+

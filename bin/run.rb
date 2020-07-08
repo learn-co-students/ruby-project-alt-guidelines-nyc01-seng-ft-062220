@@ -1,7 +1,8 @@
 require_relative '../config/environment'
 
 def welcome_message
-  puts "Welcome to Flatiron Restaurant"
+  puts "FLATIRON RESTAURANT RESERVATION SYSTEM"
+  puts
   puts "Please make your selection:"
   puts
   puts "1. I'm a Restaurant"
