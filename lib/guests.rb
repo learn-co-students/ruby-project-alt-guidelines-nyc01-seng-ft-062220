@@ -7,8 +7,8 @@ class Guest < ActiveRecord::Base
   def self.who_are_you?
     puts "Please enter your phone number so the system can find you."
     input_phone_number = gets.chomp
-    if input_phone_number
-      guest = Guest.find_by(phone_number: input_phone_number)
+    guest = Guest.find_by(phone_number: input_phone_number)
+    if guest.nil? == false
       @@guest_id = guest.id
       make_selection
     else
@@ -17,16 +17,16 @@ class Guest < ActiveRecord::Base
     end
   end
 
-
   def self.make_selection
     print "\e[2J\e[f"
-    puts "Flatiron Restaurant Reservation System"
+    puts
+    puts "FLATIRON RESTAURANT RESERVATION SYSTEM"
     puts
     puts "Guest ID: #{@@guest_id}"
     puts "What would you like to do?"
     puts
     puts "1. See all reservations"
-    puts "2. Book a reservation"
+    puts
     puts
     puts
     puts "Please make your selection:"
@@ -51,9 +51,14 @@ class Guest < ActiveRecord::Base
     reservations.each do |item|
       restaurant = Restaurant.find_by(id: item.restaurant_id)
       restaurant_name = restaurant.name
-      my_resos << restaurant_name
+      my_resos << "#{restaurant_name} - #{item.date} - #{item.time} - #{item.party_size}"
     end
+    puts
+    puts
     my_resos.each {|item| puts item}
-
+    puts
+    puts
+    puts "Press enter to continue."
+    gets.chomp
   end
 end

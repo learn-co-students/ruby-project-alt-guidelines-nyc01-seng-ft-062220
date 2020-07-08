@@ -11,7 +11,7 @@ class Restaurant < ActiveRecord::Base
     restaurant.each do |item|
       @restaurant_id = item.id
     end
-    puts "Flatiron Restaurant Reservation System"
+    puts "FLATIRON RESTAURANT RESERVATION SYSTEM"
     puts
     puts "What would you like to do?"
     puts
@@ -108,7 +108,7 @@ class Restaurant < ActiveRecord::Base
       puts
       puts "Pending Reservations:"
       puts
-      reservations = Reservation.all.select {|reso| reso.guest_id == guest.id}
+      reservations = Reservation.all.select {|reso| reso.guest_id == guest.id && reso.restaurant_id == @restaurant_id}
       reservations.each do |item|
         id = item.id
         date = item.date
