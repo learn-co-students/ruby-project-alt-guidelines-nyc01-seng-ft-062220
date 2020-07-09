@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_160922) do
+ActiveRecord::Schema.define(version: 2020_07_09_192814) do
 
   create_table "club_members", force: :cascade do |t|
     t.integer "club_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_160922) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string "imbd_ID"
+    t.string "imbdid"
     t.string "title"
     t.integer "year"
     t.string "rated"

@@ -28,7 +28,6 @@ class CLI
             exit
         when "login"
             puts "What's your username?"
-            # CLI.find_my_id(login_username).name
             login_username = gets.chomp
             logged_in = CLI.find_my_id(login_username)
             # binding.pry
@@ -48,8 +47,8 @@ class CLI
             puts "Please type in your search query with correct capatilization and punctuation for the search to work:"
             puts "(Thanks to our movie database sponsors at IMDB)"
             movie_search = gets.chomp
-            # MovieData.seed_movie(movie_search)
-            CLI.movie_search(movie_search)
+            # CLI.movie_search_and_create(movie_search)
+            MovieData.mov(movie_search)
             exit
         when "3"
             CLI.leave_club(logged_in)
@@ -110,9 +109,7 @@ class CLI
     end
 
     def self.provide_club_info(user_club_input, person_name)
-        # binding.pry
         clubid = Club.find_by(name_of_club: "#{user_club_input}").id
-        # binding.pry
         Club.all.each do |club_instance|
             if club_instance.name_of_club == user_club_input
                 puts "Hey #{CLI.find_my_id(person_name).name}, we're #{club_instance.name_of_club}."
@@ -125,7 +122,6 @@ class CLI
     end
 
     def self.join_club(username, club)
-        # user_id = Member.find_by(username: "#{username.username}")
         clubid = Club.find_by(name_of_club: "#{club}").id
         ClubMember.create(club_id: clubid, member_id: username.id)
     end
@@ -138,7 +134,8 @@ class CLI
         puts "\n"
         puts "If none of that sounds interesting, you can go ahead and search for a movie!"
         movie_search = gets.chomp
-        puts CLI.movie_search(movie_search)
+        # puts CLI.movie_search_and_create(movie_search)
+        MovieData.mov(movie_search)
     end
 
     def self.update_club_count(club)
@@ -160,9 +157,6 @@ class CLI
     end
 
     def self.menu_options(username)
-        # userid = Member.find_by(username: username)
-        # CLI.find_my_id(userid).name
-        # binding.pry
         puts "Hey #{username.name}, here's a menu of options to choose from:"
         puts "Press 1 - View My Current Club"
         puts "Press 2 - Search Movies"
@@ -182,9 +176,13 @@ class CLI
     #     puts "Otherwise, your film club founder will notified and will check out choice"
     # end
 
-    def self.movie_search(movie_search)
-        MovieData.seed_movie(movie_search)[:Title]
-            # binding.pry
+    # def self.movie_search(movie_search)
+    #     MovieData.seed_movie(movie_search)
+    #         # binding.pry
+    # end
+
+    def self.movie_search_and_create(movie_search)
+        MovieData.mov(movie_search)
     end
     
 end

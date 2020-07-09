@@ -84,3 +84,6 @@ Learning about SQL, ORMs, and ActiveRecord over the July 4th weekend and into Tu
 Prior to this project, I had never used an API in code before. (I have a lot of experience using Zapier.). Luckily, RapidAPI provided code to implement and then I used the knowledge I have work with nested data strcutures and break things down to meet my expectations.
 
 Learning to ask for help when needed. Big thanks to Duke Ko, Michael Horowitz, Kyle Burda, Julia Zhou, and Jamie Wittenberg for having patience and taking the time.
+
+## Goals
+The goal is to keep building on this project with a frontend and add more functionality that would allows users to post about movies and reviews. 
