@@ -83,6 +83,15 @@ def offer
   puts "Thank you for creating a new parking spot."
 end
 
-
+def delete 
+  puts "Here is the list of available parking spots:" 
+  available.map do |spot|
+    puts "N #{spot.id}, #{spot.location}, will be available at #{spot.time}"
+  end
+    puts "Which parking_spot you would like to delete?, Enter id:"
+    id = gets.strip 
+    ParkingSpot.delete(id)
+    puts "Thank you for deleting."
+end
 
 end 
