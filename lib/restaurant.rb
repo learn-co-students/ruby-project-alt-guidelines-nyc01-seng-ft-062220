@@ -238,7 +238,5 @@ class Restaurant < ActiveRecord::Base
       modify_reservation(id)
     end
   end
-
-
 end
 
