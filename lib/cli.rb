@@ -58,7 +58,7 @@ if Driver.all.map{|driver| driver.id}.include? driver_id # ckeck if the Driver i
   spot.save
   Status.create(parking_spot_id: spot_id, driver_id: new_driver.id)   #ccreating new Status instance for history
   puts "Welcome to the community #{name}." 
-  puts "You driver id now is #{new_driver.id}. Please remember it to use it later on." 
+  puts "You driver id now is #{new_driver.id}. Please remember it for using later on." 
   puts "Your reservation:  #{spot.location}, at #{spot.time}. "
   end
 else 
