@@ -31,6 +31,11 @@ class CommandLineInterface
             #@@client_id = 
         if Client.find_by(name: @@client_name)
             client_interface
+        elsif input == "Admin"
+            puts "You've found the Easter Egg Parzival!".blue
+            puts "--------------"
+            pp @@secret
+            client_greeting
         else
             puts "** Hmm, we can't find you in our databese. **"
             puts "** Would you like to create a new profile for yourself? **"
@@ -45,7 +50,7 @@ class CommandLineInterface
     end
 
     def client_interface
-                puts "**  Hello, #{@@client_name} here's what we can do for you:                                **"
+                puts "**  Hello, #{@@client_name} here's what we can do for you:  **"
                 puts "**   - My_reviews : Shows you how many reviews you have in total.               **".yellow
                 puts "**   - How_many : Shows you the number of reviews you've left.                  **".yellow
                 puts "**   - Write_review : Write a new review.                                       **".yellow
@@ -54,7 +59,7 @@ class CommandLineInterface
                 puts "**   - Dealership_reviews : View all of the reviews for a specific dealership.  **".yellow
                 puts "**   - Dealership_rating : Rating for a specific dealership.                    **".yellow
                 puts "**   - Edit_account : Change information associated with your account.          **".yellow
-                puts "**   - Delete_account : You can delete your account if you'd like.              **".yellow 
+                puts "**   - Delete_account : Delete your account.                                    **".yellow 
                 puts "**   - Help : Lists available commands.                                         **".yellow
                 puts "**   - Exit : Exits the system.                                                 **".yellow
                 client_run
@@ -363,6 +368,58 @@ class CommandLineInterface
     # end
 
 
+
+    @@secret = "    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmdhyyssossyydNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmhysoooooossso++oyhmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmhysooooooossyysoo++syyyhNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmhssooooooossyyhyyso+syyyysydNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNhssoooooossssyyyhyyooyhhyyyyssydNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMdsooooooossssyyyyhhysyhdhhhyyyssyyhmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMhsoooooossssyyyyyhhhhdmdddhhyyyssyyyydMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMhoooooossssyyyyyhhhhdmmmdddhhyysyyhyyyydMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMdooooossssyyyyyhhhhddmmmmddhhyyyyhhhyyyyyNMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMdooooosssyyyyyhhhhdddmmmmmddhyyyhdhhhhyyyysdMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMdoooossyyyyyyyhhhddddmmmmmddhyyhdddhhhhyyyyoohMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMmooosssyyyyyyhhhddddmmmmmmmdhyhdddddhhhhyyyssoodMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMsoossyyyyyyyhhdddddmmmmmmmdhdmmmddddhhhyyyssssosMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMdosssyyyyyyhhdddddmmmmmmmmddmmmmmdddhhhyyyyssssoomMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMhssyyyyyyhhddddddmmmmmmmmmmmmmmmmdddhhyyyyyyssssomMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMhssyyyyyhddddddmmmmmmmddmNmmmmmmdddhhyyhhyyyssssssNMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMmssyyyyhdddddddmmmmmmddmmmNmmmmmddhhhhhhhhyyyssssssyMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMyyyyyhhddddddmmmmmmdddmmmNNNmmmddhhhhdhhhyyyssssssssNMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMNsyyyhdddddddmmmmddddmmmmmNNmmmddhhddddhhhyyyssssssssNMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMyyyhddddddddmmddddmmmmmmNNNmmdhddddddhhhyyysssyyssssMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMhyhddddddddmdddddmmmmmmNNNmddddmdddddhhyyyssyyyyssshMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMNhdddddddddddddmmmmmmmNNNmddmmmmddddhhyyyyyhhyyyssshMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMNdddddddddddddmmmmmmmNNmmmmmmmmddddhhyyyyhhhhyyyssyhMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMmhdddddddddddmmmmmmmmmddmmmmmmmdddhhyyyhhhhhyyyyyyydMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMNdddddddddddmmmmmmmmdddmmNmmmmddhhyyhdddhhhhyyyyyyymMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMmhdhddddddmmmmmmmdhddmmmNmmmddhhhhddddhhhhyyyhhhydMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMNddddddddmmmmddhhddmmmNNmmdhhhdddddddhhhyyhhhhhdMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMNdddddddmmdhhhdddmmmmNmddhhddmdddddhhhyhhdhhhhMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMdddddddddhhhdddmmmmmNddddmmmddddhhhhhdddhhhyNMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMNddddddhhhhhdddmmmmmddmmmmmddddhhhhdddddhhymMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmdddhhhhhddddmmmmdmNmmmmddddhhdddddddhyhNMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmdhhhhhhdddddddmmNmmmdddhdddmddddhhhmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMdhhhhhhddhhhdmmmmddddddmmddddhhhmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdhhhhhhhhhddmmddddmmmddddhhdNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNNmdhhhhhdddddmmdmmddmmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 
 
 end
