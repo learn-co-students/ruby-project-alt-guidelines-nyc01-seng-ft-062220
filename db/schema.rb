@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_202858) do
+ActiveRecord::Schema.define(version: 2020_07_09_160922) do
 
   create_table "club_members", force: :cascade do |t|
     t.integer "club_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_202858) do
     t.integer "current_size"
     t.integer "member_capacity"
     t.string "meetings_day"
-    t.integer "attendence"
+    t.integer "attendance"
   end
 
   create_table "members", force: :cascade do |t|

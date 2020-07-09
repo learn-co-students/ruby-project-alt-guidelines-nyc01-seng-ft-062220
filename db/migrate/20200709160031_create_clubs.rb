@@ -6,7 +6,7 @@ class CreateClubs < ActiveRecord::Migration[5.2]
       t.integer :current_size
       t.integer :member_capacity
       t.string :meetings_day
-      t.integer :attendence
+      t.integer :attendance
     end
   end
 end

@@ -40,7 +40,9 @@ class CLI
         case logged_respond
         when "1"
             puts "You chose: View My Current Club"
-            puts "You're currently a member of the following club(s): #{CLI.current_club(logged_in)}"
+            # binding.pry
+            puts "You're currently a member of the following club(s): #{CLI.current_club(logged_in)}."
+            
         when "2"
             puts "You chose: Search Movies"
             puts "Please type in your search query with correct capatilization and punctuation for the search to work:"
@@ -70,7 +72,7 @@ class CLI
             club_day = gets.chomp
             puts "What is your attendance like? If you're the only person in the club, you can put 1."
             club_attend = gets.chomp
-            Club.create(name_of_club: "#{club_name}", about_club: "#{club_about}", current_size: "#{club_size}", member_capacity: "#{club_cap}", meetings_day: "#{club_day}", attendence: "#{club_attend}")
+            Club.create(name_of_club: "#{club_name}", about_club: "#{club_about}", current_size: "#{club_size}", member_capacity: "#{club_cap}", meetings_day: "#{club_day}", attendance: "#{club_attend}")
         end
 
         puts CLI.provide_club_info(club_input_name, login_username)
@@ -86,9 +88,6 @@ class CLI
         when "N" || "n"
             puts "No problem, you can exit the program and join a different club."
         end
-
-
-
 
         puts "If you want to join another club or start one of your own, please restart the program!"
         exit
@@ -136,6 +135,10 @@ class CLI
         puts "\n"
         puts "OR you can type 'create' (without quotes and case sensitive) to create your own club!"
         puts CLI.vacancy
+        puts "\n"
+        puts "If none of that sounds interesting, you can go ahead and search for a movie!"
+        movie_search = gets.chomp
+        puts CLI.movie_search(movie_search)
     end
 
     def self.update_club_count(club)
@@ -153,11 +156,7 @@ class CLI
 
     def self.current_club(user)
         find_club = ClubMember.find_by(member_id: user.id)
-        if true
-            Club.find(find_club.club_id).name_of_club
-        else
-        "Sorry, you're not a member of a club. You should join one or create. Please restart the application to do so."
-        end
+        find_club ? Club.find(find_club.club_id).name_of_club : "Sorry, you're not a member of a club. You should join one or create. Please restart the application to do so."
     end
 
     def self.menu_options(username)
