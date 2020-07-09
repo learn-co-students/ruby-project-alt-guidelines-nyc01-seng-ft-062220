@@ -30,7 +30,6 @@ class CLI
             puts "What's your username?"
             login_username = gets.chomp
             logged_in = CLI.find_my_id(login_username)
-            # binding.pry
             puts "Welcome back, #{logged_in.name}!"
             logged_respond = CLI.menu_options(logged_in)
             puts logged_respond
@@ -39,7 +38,6 @@ class CLI
         case logged_respond
         when "1"
             puts "You chose: View My Current Club"
-            # binding.pry
             puts "You're currently a member of the following club(s): #{CLI.current_club(logged_in)}."
             
         when "2"
@@ -47,7 +45,6 @@ class CLI
             puts "Please type in your search query with correct capatilization and punctuation for the search to work:"
             puts "(Thanks to our movie database sponsors at IMDB)"
             movie_search = gets.chomp
-            # CLI.movie_search_and_create(movie_search)
             MovieData.mov(movie_search)
             exit
         when "3"
@@ -75,7 +72,6 @@ class CLI
         end
 
         puts CLI.provide_club_info(club_input_name, login_username)
-        # binding.pry
         puts "Would you like to join this club? (Y/N)"
         joining_yn = gets.chomp
 
@@ -134,7 +130,6 @@ class CLI
         puts "\n"
         puts "If none of that sounds interesting, you can go ahead and search for a movie!"
         movie_search = gets.chomp
-        # puts CLI.movie_search_and_create(movie_search)
         MovieData.mov(movie_search)
     end
 
@@ -168,18 +163,6 @@ class CLI
         ClubMember.find_by(member_id: member).delete
         binding.pry
     end
-
-    # def self.add_movie_to_club(club)
-    #     Movie.club.
-    #     puts "Great choice!"
-    #     puts "If you're the founder of your club, feel free to tell your members via the platform." # Assuption that there is companion phone app created by the administrative company in this scenario.
-    #     puts "Otherwise, your film club founder will notified and will check out choice"
-    # end
-
-    # def self.movie_search(movie_search)
-    #     MovieData.seed_movie(movie_search)
-    #         # binding.pry
-    # end
 
     def self.movie_search_and_create(movie_search)
         MovieData.mov(movie_search)
