@@ -1,4 +1,4 @@
 class MovieClub < ActiveRecord::Base
-    belongs_to :clubs_id
-    belongs_to :movies_id
+    belongs_to :movie
+    belongs_to :club
 end
