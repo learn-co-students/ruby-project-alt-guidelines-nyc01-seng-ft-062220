@@ -12,6 +12,7 @@ movie2 = Movie.create(imbd_ID: "tt0079817", title: "Rocky II", year: 1979, rated
 club1 = Club.create(name_of_club: "Film Club", about_club: "Watch films", current_size: 10, member_capacity: 15, meetings_day: "Friday", attendence: 7)
 club2 = Club.create(name_of_club: "New York, New York", about_club: "Only New York movies", current_size: 4, member_capacity: 7, meetings_day: "Monday", attendence: 3)
 club3 = Club.create(name_of_club: "At capacity", about_club: "old movies", current_size: 7, member_capacity: 7, meetings_day: "Tuesday", attendence: 7)
+club4 = Club.create(name_of_club: "Music Movies Only!", about_club: "Only music movies docs and biopics", current_size: 4, member_capacity: 7, meetings_day: "Monday", attendence: 3)
 
 member1 = Member.create(name: "John Doe", username: "johndoe", password: "password")
 member2 = Member.create(name: "Jane Fakeman", username: "jane", password: "fake")
@@ -21,4 +22,5 @@ club_members2 = ClubMember.create(club: club2, member: member2)
 
 movie_clubs1 = MovieClub.create(movie: movie1, club: club1)
 movie_clubs2 = MovieClub.create(movie: movie2, club: club2)
-binding.pry
+movie_clubs3 = MovieClub.create(movie: movie1, club: club4)
+# binding.pry
