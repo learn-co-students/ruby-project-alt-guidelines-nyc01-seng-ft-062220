@@ -47,16 +47,16 @@ if Driver.all.map{|driver| driver.id}.include? driver_id # ckeck if the Driver i
   spot = ParkingSpot.find(spot_id)
   spot.available = false            #change parking_spot  for unavailable
   spot.save
-  Status.create(parking_spot_id: spot_id, driver_id: driver_id)
+  Status.create(parking_spot_id: spot_id, driver_id: driver_id)  #creating new Status instatces for history 
   puts "Thank you for reservation. Your reservation:  #{spot.location}, at #{spot.time}. "
   else 
     puts "No match. It looks like you are a new user. Enter you name:" 
-    name = gets.strip              # if new user, create ned driver and reserve a spot
+    name = gets.strip              # if new user, create a new driver and reserve a spot
     new_driver = Driver.create(name: name)
     spot = ParkingSpot.find(spot_id) 
-  spot.available = false 
+  spot.available = false                #changing parking spot attrubute for unavailable
   spot.save
-  Status.create(parking_spot_id: spot_id, driver_id: new_driver.id)
+  Status.create(parking_spot_id: spot_id, driver_id: new_driver.id)   #ccreating new Status instance for history
   puts "Welcome to the community #{name}." 
   puts "You driver id now is #{new_driver.id}. Please remember it to use it later on." 
   puts "Your reservation:  #{spot.location}, at #{spot.time}. "
@@ -67,7 +67,21 @@ else
 end
 end
 
-
+def offer
+  puts "Thank you for offering a parking spot."
+  puts "Please enter what time the parking spot will be available:"
+  time = gets.strip
+  puts "Please enter location:"                        
+  loc = gets.strip
+  if ParkingSpot.all.map {|spot| spot.location}.include? loc     #chek if parking spot is already in database
+  spot = ParkingSpot.find_by(location: loc)                      #and make it available by changing attribute
+  spot.available = true
+  spot.save
+  else                                                              #if new location - create new Parking spot
+  ParkingSpot.create(available: true, time: time, location: loc)
+  end 
+  puts "Thank you for creating a new parking spot."
+end
 
 
 
