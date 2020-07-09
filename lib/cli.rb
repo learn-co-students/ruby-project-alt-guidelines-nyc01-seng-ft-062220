@@ -1,5 +1,8 @@
 # TODO:
 
+    # :cant cancel new account
+    # :clients with same name break the app
+
 
 
 class CommandLineInterface
@@ -27,6 +30,7 @@ class CommandLineInterface
         puts "** What's your name? : **"
             input = gets.strip.capitalize
             @@client_name = input
+            #@@client_id = 
         if Client.find_by(name: @@client_name)
             client_interface
         else
@@ -93,11 +97,11 @@ class CommandLineInterface
                         client_continue
                     end
             end
-        elsif input == "WRITE"
+        elsif input == "WRITE_REVIEW"
             create_review
-        elsif input == "EDIT"
+        elsif input == "EDIT_REVIEW"
             edit_review
-        elsif input == "DELETE"
+        elsif input == "DELETE_REVIEW"
             delete_review
         elsif input == "DEALERSHIP_REVIEWS"
             dealership_reviews 
@@ -147,7 +151,7 @@ class CommandLineInterface
     
     def create_client
         puts "**  Let's make a new profile for you.  **\n **  What's your name? :  **"
-            @@client_name = gets.strip
+            @@client_name = gets.strip.capitalize
                 puts "**  Great, and what's your email?  **"
                     email = gets.strip
                         puts "**  Fantasic, and lastly, what's your phone number?  **"
@@ -186,6 +190,7 @@ class CommandLineInterface
 
     def edit_review
      # client should be able to edit a review.
+     if Client.find_by(name: @@client_name).reviews != []
         puts "**  Which review would you like to edit?  **"
         pp Client.find_by(name: @@client_name).reviews
         puts "**  Please enter the dealership ID  **"
@@ -196,7 +201,11 @@ class CommandLineInterface
                     selected_review.update(text_body: input)
                     puts "**  Your review has been updated, here's the new review:  **"
                     pp selected_review
+                    client_continue
+     else
+        puts "**  Hmm, it looks like you don't have any reviews yet!  **"
         client_continue
+     end
     end
 
     def edit_client
@@ -206,7 +215,7 @@ class CommandLineInterface
                 case
                 when input == "NAME"
                     puts "**  Please enter a new name. :  **"
-                        name = gets.strip
+                        name = gets.strip.capitalize
                             @@client_name = name
                             client.update(name: name)
                 when input == "EMAIL"
@@ -231,15 +240,20 @@ class CommandLineInterface
 
     def delete_review
         # cleint should be able to delete a review.
-        puts "**  Which review would you like to delete?  **"
-           pp Client.find_by(name: @@client_name).reviews
-           puts "**  Please enter the ID"
-               input = gets.strip
-                   selected_review = Review.find_by(id: input)
-                   selected_review.destroy
-                   puts "**  Review has been deleted. Here all of the remaining reviews.  **"
-                   pp Client.find_by(name: @@client_name).reviews
-           client_continue
+        if Client.find_by(name: @@client_name).reviews != []
+            puts "**  Which review would you like to delete?  **"
+                pp Client.find_by(name: @@client_name).reviews
+                    puts "**  Please enter the ID"
+                        input = gets.strip
+                            selected_review = Review.find_by(id: input)
+                                selected_review.destroy
+                                    puts "**  Review has been deleted. Here all of the remaining reviews.  **"
+                                        pp Client.find_by(name: @@client_name).reviews
+                                            client_continue
+        else
+            puts "**  Hmm, it looks like you don't have any reviews yet.  **"
+            client_continue
+        end
     end
 
     def delete_client
