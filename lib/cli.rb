@@ -23,4 +23,16 @@ def available
 ParkingSpot.all.select {|spot| spot.available == true}
 end
 
+def find
+  if available.count > 0  
+    puts "Here is the list of available parking spots:" 
+    available.map do |spot|
+    puts "ID #{spot.id}, '#{spot.location}'', will be available at #{spot.time}"
+    end
+    reserve
+  else 
+     puts "Sorry! There are no available parking spots at this time, try later!"
+  end
+end 
+
 end 
