@@ -88,24 +88,11 @@ class Restaurant < ActiveRecord::Base
   def self.check_reservations
     system("clear")
     puts
-    test = Reservation.all.select {|reso| reso.restaurant_id == @@restaurant.id}
-
+    reservations = Reservation.all.select {|reso| reso.restaurant_id == @@restaurant.id}
     final_array = []
-
-    test.each do |reso|
-      date = reso.date
-      time = reso.time
-      party_size = reso.party_size
-      reso_notes = reso.reservation_notes
-
+    reservations.each do |reso|
       guest = Guest.find_by(id: reso.guest_id)
-      first_name = guest.first_name
-      last_name = guest.last_name
-      phone_number = guest.phone_number
-      guest_notes = guest.guest_notes
-
-      final_array.push("#{date} \t #{time} \t #{party_size} \t #{first_name} #{last_name} \t #{phone_number} \t #{guest_notes} \t #{reso_notes}")
-
+      final_array.push("#{reso.date} \t #{reso.time} \t #{reso.party_size} \t \t #{guest.first_name} #{guest.last_name} \t #{guest.phone_number} \t #{guest.guest_notes} \t #{reso.reservation_notes}")
     end
     puts ("Date \t \t Time \t Size \t Guest Name \t Phone Number \t Guest Notes \t \t Reservation Notes       ")
     final_array.each do |item|
