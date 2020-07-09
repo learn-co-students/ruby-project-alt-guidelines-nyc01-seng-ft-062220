@@ -35,4 +35,40 @@ def find
   end
 end 
 
+def reserve
+  puts "Please choose the one you would like to reserve and enter parking spot id:"
+  spot = gets.strip
+  spot_id = spot.to_i 
+  if available.map{|spot| spot.id}.include? spot_id  #chek if the input match to id of available parking spots
+  puts "Enter your id:"
+  driver = gets.strip
+  driver_id = driver.to_i
+if Driver.all.map{|driver| driver.id}.include? driver_id # ckeck if the Driver is already in database
+  spot = ParkingSpot.find(spot_id)
+  spot.available = false            #change parking_spot  for unavailable
+  spot.save
+  Status.create(parking_spot_id: spot_id, driver_id: driver_id)
+  puts "Thank you for reservation. Your reservation:  #{spot.location}, at #{spot.time}. "
+  else 
+    puts "No match. It looks like you are a new user. Enter you name:" 
+    name = gets.strip              # if new user, create ned driver and reserve a spot
+    new_driver = Driver.create(name: name)
+    spot = ParkingSpot.find(spot_id) 
+  spot.available = false 
+  spot.save
+  Status.create(parking_spot_id: spot_id, driver_id: new_driver.id)
+  puts "Welcome to the community #{name}." 
+  puts "You driver id now is #{new_driver.id}. Please remember it to use it later on." 
+  puts "Your reservation:  #{spot.location}, at #{spot.time}. "
+  end
+else 
+  puts "Incorrect input."
+  reserve
+end
+end
+
+
+
+
+
 end 
