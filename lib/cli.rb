@@ -1,7 +1,5 @@
 # TODO:
-
-    # :cant cancel new account
-    # :clients with same name break the app
+    # :clients with same name break don't work properly
 
 
 
@@ -37,7 +35,7 @@ class CommandLineInterface
             puts "** Hmm, we can't find you in our databese. **"
             puts "** Would you like to create a new profile for yourself? **"
             puts "** Please type Yes or No **".red
-                input = gets.chomp.upcase
+                input = gets.strip.upcase
                     if input == "YES"
                         create_client
                     else
@@ -47,7 +45,7 @@ class CommandLineInterface
     end
 
     def client_interface
-                puts "**  Hello, #{@@client_name} here's what we can do for you:                                 **"
+                puts "**  Hello, #{@@client_name} here's what we can do for you:                                **"
                 puts "**   - My_reviews : Shows you how many reviews you have in total.               **".yellow
                 puts "**   - How_many : Shows you the number of reviews you've left.                  **".yellow
                 puts "**   - Write_review : Write a new review.                                       **".yellow
@@ -80,7 +78,7 @@ class CommandLineInterface
     def client_run
         puts "**  What would you like to do? :  **"
         puts "**  Remember, you can type Help to get a list of commands.  **".yellow
-        input = gets.chomp.upcase
+        input = gets.strip.upcase
     
         if input == "MY_REVIEWS"
             client_reviews
@@ -90,7 +88,7 @@ class CommandLineInterface
             else
                 puts "**  Would you like to create a new review?  **"
                 puts "**  Please answer Yes or No  **".red
-                    input = gets.chomp.upcase
+                    input = gets.strip.upcase
                     if input == "YES"
                         create_review
                     else
@@ -135,13 +133,13 @@ class CommandLineInterface
                     puts "**  What would like to say?  **"
                         text = gets.strip
                                 puts "**  How would you rate this Dealership from 1-5?  **"
-                                rating = gets.chomp.to_i
+                                rating = gets.strip.to_i
                                     while rating > 5 || rating <= 0 
                                         puts "**  Please make sure your rating is between 1 and 5.  **".red
-                                        rating = gets.chomp.to_i
+                                        rating = gets.strip.to_i
                                     end
                                 puts "**  Perfect, thank you! Here is your new review:  **"
-                                Review.create(text_body: text, rating: rating, dealership_id: dealership, client_id: client)
+                                pp Review.create(text_body: text, rating: rating, dealership_id: dealership, client_id: client)
                                 client_continue
                 elsif input == "NEW"
                     create_dealership
@@ -157,7 +155,7 @@ class CommandLineInterface
                         puts "**  Fantasic, and lastly, what's your phone number?  **"
                             phone = gets.strip
         Client.create(name: @@client_name, email: email, phone: phone)
-        client_identity
+        client_interface
     end
 
     def create_dealership
@@ -243,7 +241,7 @@ class CommandLineInterface
         if Client.find_by(name: @@client_name).reviews != []
             puts "**  Which review would you like to delete?  **"
                 pp Client.find_by(name: @@client_name).reviews
-                    puts "**  Please enter the ID"
+                    puts "**  Please enter the Review ID  **"
                         input = gets.strip
                             selected_review = Review.find_by(id: input)
                                 selected_review.destroy
