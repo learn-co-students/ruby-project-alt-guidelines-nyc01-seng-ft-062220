@@ -5,8 +5,8 @@ Restaurant.delete_all
 Reservation.delete_all
 
 
-g1 = Guest.create(first_name: "Bill", last_name:'Gates', phone_number: 2128675309, guest_notes: "Likes expensive wine")
-g2 = Guest.create(first_name: "Steve", last_name:'Jobs', phone_number: 2121112222, guest_notes: "Likes Apple Pie ")
+g1 = Guest.create(first_name: "Bill", last_name:'Gates', phone_number: 2128675309, guest_notes: "Likes expensive wine    ")
+g2 = Guest.create(first_name: "Steve", last_name:'Jobs', phone_number: 2121112222, guest_notes: "Likes Apple Pie         ")
 
 rest1 = Restaurant.create(name: 'ilili')
 rest2 = Restaurant.create(name: 'Tribeca Grill')

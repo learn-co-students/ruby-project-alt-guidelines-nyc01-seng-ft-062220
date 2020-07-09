@@ -1,3 +1,5 @@
+require 'pry'
+
 class Restaurant < ActiveRecord::Base
   has_many :reservations
   has_many :guests, through: :reservations
@@ -91,9 +93,9 @@ class Restaurant < ActiveRecord::Base
     reservations = Reservation.all.select {|reso| reso.restaurant_id == @@restaurant.id}
     reservations.each do |reso|
       guest = Guest.find_by(id: reso.guest_id)
-      final_array.push("#{reso.date} \t #{reso.time} \t #{reso.party_size} \t \t #{guest.first_name} #{guest.last_name} \t #{guest.phone_number} \t #{guest.guest_notes} \t #{reso.reservation_notes}")
+      final_array.push("#{reso.date} \t #{reso.time} \t #{reso.party_size}         #{guest.first_name} #{guest.last_name}      #{guest.phone_number}        #{guest.guest_notes}  #{reso.reservation_notes}")
     end
-    puts ("Date \t \t Time \t Size \t Guest Name \t Phone Number \t Guest Notes \t \t Reservation Notes       ")
+    puts ("DATE \t \t TIME \t SIZE      GUEST NAME      PHONE NUMBER      GUEST NOTES               RESERVATION NOTES")
     final_array.each do |item|
       puts item
     end
@@ -166,8 +168,9 @@ class Restaurant < ActiveRecord::Base
     puts "2. Time"
     puts "3. Party Size"
     puts "4. Reservation Notes"
-    puts "5. Cancel Reservation"
-    puts "6. Return to main menu"
+    puts "5. Guest Notes"
+    puts "6. Cancel Reservation"
+    puts "7. Return to main menu"
     puts
     puts "Please make a selection: "
     input = gets.chomp.to_i
@@ -202,8 +205,15 @@ class Restaurant < ActiveRecord::Base
       reservation.save
       puts 'Notes Updated'
       check_reservations
-
     elsif input == 5
+      puts "Please input new Guest Notes"
+      new_guest_notes = gets.chomp
+      guest.guest_notes = new_guest_notes
+      guest.save
+      puts "Guest Notes Updated"
+      check_reservations
+
+    elsif input == 6
       puts "CONFIRM: Cancel this reservation? y/n"
       input = gets.chomp
       if input == 'y'
@@ -217,7 +227,7 @@ class Restaurant < ActiveRecord::Base
         puts "Invalid selection. Press enter to try again"
         modify_reservation(id)
       end
-    elsif input == 6
+    elsif input == 7
       make_selection
     else
       puts "Invalid selection. Please Try again."
