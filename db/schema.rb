@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_203105) do
+ActiveRecord::Schema.define(version: 2020_07_08_233330) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "name"
-    t.string "car"
   end
 
   create_table "parking_spots", force: :cascade do |t|
+    t.boolean "available"
+    t.string "time"
     t.string "location"
-    t.string "status"
   end
 
   create_table "statuses", force: :cascade do |t|
-    t.string "parking_spot"
-    t.string "driver"
+    t.integer "parking_spot_id"
+    t.integer "driver_id"
   end
 
 end

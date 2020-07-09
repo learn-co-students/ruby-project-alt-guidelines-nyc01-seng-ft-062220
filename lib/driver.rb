@@ -1,4 +1,7 @@
-class Driver < ActiveRecords::Base
-    has many :statuses 
-    has many :parking_spots, trough: statuses
+class Driver < ActiveRecord::Base
+    has_many :statuses
+    has_many :parking_spots, through: :statuses
 end
+
+
+
