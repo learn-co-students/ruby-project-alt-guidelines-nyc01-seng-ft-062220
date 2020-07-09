@@ -2,6 +2,7 @@ class Guest < ActiveRecord::Base
   has_many :reservations
   has_many :restaurants, through: :reservations
 
+  #This holds the current user that's booking reservations. It does not write to the DB or impact SSOT
   @@guest = []
 
   def self.who_are_you?

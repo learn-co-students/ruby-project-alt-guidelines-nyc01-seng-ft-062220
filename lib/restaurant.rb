@@ -1,9 +1,8 @@
-require 'pry'
-
 class Restaurant < ActiveRecord::Base
   has_many :reservations
   has_many :guests, through: :reservations
 
+  #This holds the current restaurant that's logged into their book. It does not write to the DB or impact SSOT
   @@restaurant = []
 
   def self.who_are_you?
@@ -88,8 +87,8 @@ class Restaurant < ActiveRecord::Base
   def self.check_reservations
     system("clear")
     puts
-    reservations = Reservation.all.select {|reso| reso.restaurant_id == @@restaurant.id}
     final_array = []
+    reservations = Reservation.all.select {|reso| reso.restaurant_id == @@restaurant.id}
     reservations.each do |reso|
       guest = Guest.find_by(id: reso.guest_id)
       final_array.push("#{reso.date} \t #{reso.time} \t #{reso.party_size} \t \t #{guest.first_name} #{guest.last_name} \t #{guest.phone_number} \t #{guest.guest_notes} \t #{reso.reservation_notes}")
@@ -225,5 +224,5 @@ class Restaurant < ActiveRecord::Base
       modify_reservation(id)
     end
   end
-end
 
+end
