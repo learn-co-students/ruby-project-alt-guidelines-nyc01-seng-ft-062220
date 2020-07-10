@@ -64,12 +64,6 @@ class CLI
             exit
         end     
 
-            # puts 
-            # binding.pry
-            
-            
-        
-
         case club_input_name 
         when "create"
             puts "What's the name of your club?"
@@ -88,7 +82,6 @@ class CLI
         when "search"
             movie_search = gets.chomp
             MovieData.mov(movie_search)
-        # when "#{club_input_name}"
             exit
         end
 
@@ -126,14 +119,12 @@ class CLI
     end
 
     def self.provide_club_info(user_club_input, person_name)
-        # binding.pry
+
         clubid = Club.find_by(name_of_club: "#{user_club_input}").id
-        # binding.pry
+
         Club.all.each do |club_instance|
             if club_instance.name_of_club == user_club_input
                 puts "Hey #{person_name.name}, we're #{club_instance.name_of_club}."
-                # CLI.find_my_id(person_name)
-                # binding.pry
                 puts "\n"
                 puts "About us: We're all about #{club_instance.about_club} and we meet #{club_instance.meetings_day}."
                 puts "We have #{CLI.update_club_count(clubid)} member(s), and hope you would like to be Number #{CLI.update_club_count(clubid) + 1}!"
@@ -195,13 +186,6 @@ class CLI
         MovieData.mov(movie_search)
     end
 
-    # def self.add_movie_to_club(club)
-    #     Movie.club.
-    #     puts "Great choice!"
-    #     puts "If you're the founder of your club, feel free to tell your members via the platform." # Assuption that there is companion phone app created by the administrative company in this scenario.
-    #     puts "Otherwise, your film club founder will notified and will check out choice"
-    # end
-    
 end
 
     
