@@ -39,26 +39,27 @@ class MovieData
     search_result = JSON.pretty_generate(JSON.parse(search_response.body))
     # binding.pry
     result_data = JSON.parse(search_result)
+    # binding.pry
     if result_data["Type"] == "movie"
-      puts title = result_data["Title"]
-      puts year = result_data["Year"].to_i
-      puts rating = result_data["Rated"]
-      puts runtime = result_data["Runtime"].split[0].to_i
-      puts genre = result_data["Genre"]
-      puts director = result_data["Director"]
-      puts writer = result_data["Writer"]
-      puts actors = result_data["Actors"]
-      puts plot = result_data["Plot"]
-      puts language = result_data["Language"]
-      puts country = result_data["Country"]
-      puts awards = result_data["Awards"]
-      puts poster_link = result_data["PosterLink"]
-      puts imdb_rating = result_data["imdbRating"].to_f
-      puts production = result_data["Production"]
-      puts link_to_imdb = "https://www.imdb.com/title/#{imdbid}/"
+      puts title = "Movie Title: #{result_data["Title"]}"
+      puts year = "Release Year: #{result_data["Year"].to_i}"
+      puts rating = "Rated: #{result_data["Rated"]}"
+      puts runtime = "Runtime: #{result_data["Runtime"].split[0].to_i} minutes"
+      puts genre = "Genre: #{result_data["Genre"]}"
+      puts director = "Director: #{result_data["Director"]}"
+      puts writer = "Writer: #{result_data["Writer"]}"
+      puts actors = "Actors/Actresses: #{result_data["Actors"]}"
+      puts plot = "Plot: #{result_data["Plot"]}"
+      puts language = "Language: #{result_data["Language"]}"
+      puts country = "Country: #{result_data["Country"]}"
+      puts awards = "Awards: #{result_data["Awards"]}"
+      puts poster_link = "Poster Link: #{result_data["Poster"]}"
+      puts imdb_rating = "Imdb Rating: #{result_data["imdbRating"].to_f}"
+      puts production = "Production: #{result_data["production"]}"
+      puts link_to_imdb = "Link to IMDB: https://www.imdb.com/title/#{imdbid}/"
       Movie.create(imbdid: imdbid, title: title, year: year, rated: rating, runtime: runtime, genre: genre, director: director, writer: writer, actors: actors, plot: plot, language: language, country: country, awards: awards, poster_link: poster_link, imdb_rating: imdb_rating, production: production)
     else
-      "Sorry, this search is only for movies"
+      puts "Sorry, this search is only for movies"
     end
 
   end
