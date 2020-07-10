@@ -1,5 +1,6 @@
 require "pry"
 require_relative './get_imdb_data.rb'
+require_relative './easter_egg.rb'
 
 class CLI
 
@@ -32,6 +33,9 @@ class CLI
             puts "Welcome back, #{logged_in.name}!"
             logged_respond = CLI.menu_options(logged_in)
             puts logged_respond
+        when "PFC"
+            EasterEgg.greet
+            EasterEgg.are_you_school
         end
 
         case logged_respond
@@ -167,7 +171,6 @@ class CLI
 
     def self.current_club(user)
         find_club = ClubMember.find_by(member_id: user.id)
-        # binding.pry
         find_club ? Club.find(find_club.club_id).name_of_club : "Sorry, you're not a member of a club. You should join one or create one. Please restart the application to do so."
     end
 
@@ -182,13 +185,10 @@ class CLI
 
     def self.check_club_status(username)
         ClubMember.find_by(member_id: username.id)
-        # binding.pry
     end
 
     def self.leave_club(member)
         CLI.check_club_status(member).destroy
-        # ClubMember.find_by(member_id: member).destroy
-        # binding.pry
     end
 
     def self.movie_search_and_create(movie_search)
