@@ -1,3 +1,15 @@
 require_relative '../config/environment'
 
-puts "hello world"
+cli = CommandLineInterface.new
+
+print "
+                                                                               
+#               #####                       
+#       ###### #     #  ####   ####   ####  
+#       #      #       #    # #    # #    # 
+#       #####  #  #### #    # #    # #      
+#       #      #     # #    # #    # #  ### 
+#       #      #     # #    # #    # #    # 
+####### ######  #####   ####   ####   ####  
+"
+cli.client_greeting
