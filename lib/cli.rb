@@ -1,5 +1,6 @@
 # TODO:
     # :clients with same name break don't work properly
+    # :bug - while in edit review, if no dealership_id is enterted the app crashes
 
 
 
@@ -19,7 +20,7 @@ class CommandLineInterface
     end
 
     def client_exit
-        puts "** Thanks for using our LeGoog, goodye! **"
+        puts "** Thanks for using our LeGoog, goodbye! **"
     end
 
     def client_identity
@@ -37,7 +38,7 @@ class CommandLineInterface
             pp @@super_secret
             client_greeting
         else
-            puts "** Hmm, we can't find you in our databese. **"
+            puts "** Hmm, we can't find you in our database. **"
             puts "** Would you like to create a new profile for yourself? **"
             puts "** Please type Yes or No **".red
                 input = gets.strip.upcase
