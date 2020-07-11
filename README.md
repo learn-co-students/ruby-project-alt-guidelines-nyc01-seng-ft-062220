@@ -1,5 +1,7 @@
 # Film Club
 
+![Pandemic Film Club](https://sweetstatic.com/preshow-image-1/)
+
 ### Developed by Alex Beciana
 
 ## Specs
